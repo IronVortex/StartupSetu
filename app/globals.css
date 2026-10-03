@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+/*
+ * THEME TOKENS — values are RGB channels so Tailwind opacity modifiers (bg-setu-500/15) keep working.
+ * Light (Government Blue #0E91E1 + white) is the default; dark is the original StartupSetu palette.
+ * Note: in light, "white" means foreground ink (navy) and the slate scale is inverted, so every
+ * existing `text-white` / `text-slate-300` / `border-white/10` class reads correctly on white.
+ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --white: 13 27 46;
+  --onaccent: 255 255 255;
+  --ink-950: 255 255 255;
+  --ink-900: 246 249 252;
+  --ink-850: 255 255 255;
+  --ink-800: 255 255 255;
+  --ink-700: 236 242 248;
+  --ink-600: 222 231 241;
+  --ink-500: 200 212 226;
+  --setu-50: 5 64 105;
+  --setu-100: 6 80 130;
+  --setu-200: 7 96 156;
+  --setu-300: 8 110 178;
+  --setu-400: 11 126 199;
+  --setu-500: 14 145 225;
+  --setu-600: 10 116 182;
+  --setu-700: 8 96 150;
+  --ai-300: 13 128 118;
+  --ai-400: 15 148 136;
+  --ai-500: 20 170 156;
+  --ai-600: 13 128 118;
+  --saffron-300: 180 83 9;
+  --saffron-400: 217 112 15;
+  --saffron-500: 234 128 22;
+  --saffron-600: 194 95 10;
+  --mint-400: 21 128 61;
+  --mint-500: 22 163 74;
+  --danger-400: 200 30 30;
+  --danger-500: 220 38 38;
+  --warn-400: 161 98 7;
+  --warn-500: 217 119 6;
+  --violet-300: 109 40 217;
+  --violet-400: 124 58 237;
+  --violet-500: 139 92 246;
+  --slate-100: 13 27 46;
+  --slate-200: 30 41 59;
+  --slate-300: 51 65 85;
+  --slate-400: 82 96 117;
+  --slate-500: 100 113 133;
+  --slate-600: 148 160 178;
+  --slate-700: 203 213 225;
+  --grad-setu: linear-gradient(135deg, #0E91E1 0%, #0A6DAA 100%);
+  --grad-saffron: linear-gradient(135deg, #E8801A 0%, #D2601A 100%);
+  --glow-border-grad: linear-gradient(135deg, rgba(14, 145, 225, 0.45), rgba(14, 145, 225, 0.08));
+  --shadow-card: 0 1px 2px rgba(13, 27, 46, 0.04), 0 4px 14px -6px rgba(13, 27, 46, 0.08);
+  --shadow-glow: 0 1px 2px rgba(14, 145, 225, 0.2);
+  --shadow-glow-ai: 0 1px 2px rgba(13, 27, 46, 0.06);
+  --shadow-glow-saffron: 0 1px 2px rgba(194, 95, 10, 0.2);
+  --scrim: rgba(13, 27, 46, 0.45);
+  --chart-grid: rgba(13, 27, 46, 0.08);
+  --chart-tooltip-bg: #FFFFFF;
+  --chart-tooltip-border: rgba(13, 27, 46, 0.12);
+  --chart-tooltip-text: #0D1B2E;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --white: 255 255 255;
+  --onaccent: 4 8 20;
+  --ink-950: 4 8 20;
+  --ink-900: 7 13 31;
+  --ink-850: 10 18 40;
+  --ink-800: 14 23 51;
+  --ink-700: 21 32 69;
+  --ink-600: 30 43 87;
+  --ink-500: 43 58 110;
+  --setu-50: 238 244 255;
+  --setu-100: 217 230 255;
+  --setu-200: 179 204 255;
+  --setu-300: 133 171 255;
+  --setu-400: 91 139 255;
+  --setu-500: 61 109 245;
+  --setu-600: 44 83 214;
+  --setu-700: 35 66 170;
+  --ai-300: 124 240 230;
+  --ai-400: 62 224 210;
+  --ai-500: 20 195 180;
+  --ai-600: 14 156 144;
+  --saffron-300: 255 194 122;
+  --saffron-400: 255 169 77;
+  --saffron-500: 255 148 49;
+  --saffron-600: 229 119 26;
+  --mint-400: 74 222 128;
+  --mint-500: 34 197 94;
+  --danger-400: 248 113 113;
+  --danger-500: 239 68 68;
+  --warn-400: 251 191 36;
+  --warn-500: 245 158 11;
+  --violet-300: 196 181 253;
+  --violet-400: 167 139 250;
+  --violet-500: 139 92 246;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --grad-setu: linear-gradient(135deg, #5B8BFF 0%, #3EE0D2 100%);
+  --grad-saffron: linear-gradient(135deg, #FFA94D 0%, #FF7A59 100%);
+  --glow-border-grad: linear-gradient(135deg, rgba(91, 139, 255, 0.6), rgba(62, 224, 210, 0.25), rgba(255, 169, 77, 0.35));
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -24px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px rgba(91, 139, 255, 0.25), 0 10px 40px -10px rgba(61, 109, 245, 0.45);
+  --shadow-glow-ai: 0 0 0 1px rgba(62, 224, 210, 0.25), 0 10px 40px -10px rgba(20, 195, 180, 0.45);
+  --shadow-glow-saffron: 0 0 0 1px rgba(255, 169, 77, 0.3), 0 10px 40px -10px rgba(255, 148, 49, 0.45);
+  --scrim: rgba(4, 8, 20, 0.75);
+  --chart-grid: rgba(133, 171, 255, 0.08);
+  --chart-tooltip-bg: #0A1228;
+  --chart-tooltip-border: rgba(91, 139, 255, 0.25);
+  --chart-tooltip-text: #E2E8F0;
+}
+
+body {
+  @apply bg-ink-950 text-slate-200 antialiased font-sans;
+  min-height: 100vh;
+}
+
+/* The StartupSetu backdrop — used on every screen (landing + dashboards).
+   Static (never animated) so it is painted once. */
+.setu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 85% -8%, rgba(14, 145, 225, 0.07), transparent 65%),
+    #FFFFFF;
+}
+[data-theme="dark"] .setu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(61, 109, 245, 0.28), transparent 60%),
+    radial-gradient(700px 480px at 95% 5%, rgba(20, 195, 180, 0.16), transparent 60%),
+    radial-gradient(800px 600px at 60% 110%, rgba(255, 148, 49, 0.09), transparent 60%),
+    #040814;
+}
+[data-theme="dark"] .setu-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(133, 171, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(133, 171, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+}
+
+@layer components {
+  .glass {
+    /* No backdrop-filter here: blurring dozens of cards re-rasterised them on every animation frame
+       (12 fps on AI Evaluation at 4x CPU throttle). Cards are near-opaque instead. */
+    @apply rounded-2xl border border-white/[0.07] bg-ink-800/80 shadow-card;
+  }
+  .glass-hover {
+    @apply transition-colors duration-150 hover:border-setu-400/40;
+  }
+  [data-theme="dark"] .glass {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
+  }
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--glow-border-grad);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .text-gradient {
+    @apply bg-setu-gradient bg-clip-text text-transparent;
+  }
+  .text-gradient-saffron {
+    @apply bg-saffron-gradient bg-clip-text text-transparent;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-setu-400/25 bg-setu-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-setu-200;
+  }
+  .label {
+    @apply text-xs font-medium uppercase tracking-wider text-slate-400;
+  }
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-ink-900/70 px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-setu-400/60 focus:ring-2 focus:ring-setu-400/20;
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-setu-300 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+  .table-head {
+    @apply text-left text-xs font-medium uppercase tracking-wider text-slate-400;
+  }
+}
+
+/* scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--ink-500)); border-radius: 999px; border: 2px solid rgb(var(--ink-950)); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Hero illustration palette — blue-and-white civic drawing in light, original glow drawing in dark. */
+:root,
+[data-theme="light"] {
+  --h-arc-a: #0A6DAA;
+  --h-arc-b: #0E91E1;
+  --h-arc-c: #38B2F0;
+  --h-pillar-a: #FFFFFF;
+  --h-pillar-b: #E3F1FB;
+  --h-core-a: #0E91E1;
+  --h-core-b: #0E91E1;
+  --h-line: #0E91E1;
+  --h-col: #0E91E1;
+  --h-gov: #0A6DAA;
+  --h-fin: #EAF5FD;
+  --h-rocket: #FFFFFF;
+  --h-node: #0E91E1;
+  --h-node-hi: #0A6DAA;
+  --h-window: #E3F1FB;
+  --h-deck: #B6DAF2;
+  --h-fill: #FFFFFF;
+  --h-particle: #0E91E1;
+}
+[data-theme="dark"] {
+  --h-arc-a: #FFA94D;
+  --h-arc-b: #5B8BFF;
+  --h-arc-c: #3EE0D2;
+  --h-pillar-a: #1E2B57;
+  --h-pillar-b: #0A1228;
+  --h-core-a: #7CF0E6;
+  --h-core-b: #3D6DF5;
+  --h-line: #5B8BFF;
+  --h-col: #85ABFF;
+  --h-gov: #FFA94D;
+  --h-fin: #152045;
+  --h-rocket: #0E1733;
+  --h-node: #3EE0D2;
+  --h-node-hi: #7CF0E6;
+  --h-window: #040814;
+  --h-deck: #2B3A6E;
+  --h-fill: #0A1228;
+  --h-particle: #FFFFFF;
+}
+.hero-disc { display: none; }
+[data-theme="light"] .hero-disc { display: block; }
+[data-theme="light"] .hero-glow { display: none; }
+[data-theme="light"] .score-ring-arc { filter: none !important; }
+:root, [data-theme="light"] { --logo-a: #0E91E1; --logo-b: #0A6DAA; --logo-bg: #FFFFFF; --logo-deck: #E8801A; --logo-cable: #0E91E1; }
+[data-theme="dark"] { --logo-a: #5B8BFF; --logo-b: #3EE0D2; --logo-bg: #0A1228; --logo-deck: #FFA94D; --logo-cable: #85ABFF; }
